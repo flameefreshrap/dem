@@ -1,0 +1,60 @@
+﻿<Page x:Class="TelecomNevaSvyazApp.MainPages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TelecomNevaSvyazApp.MainPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="0" Columns="3" Background="#B5DEFA">
+            <TextBox Name="tbSearch" TextChanged="TbSearchClick" Margin="5" Background="White" />
+            <ComboBox Name="cbTime" Margin="5" SelectionChanged="SortEvent"/>
+            <ComboBox Name="cbAut"  Margin="5"/>
+        </UniformGrid>
+
+        <ListView Grid.Row="1" Name="LvContent">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Grid.Row="1" Height="150">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Resources/picture.png" Margin="3"/>
+
+                        <UniformGrid Rows="3" Grid.Column="1">
+                            <TextBlock Text="{Binding Title}" FontFamily="Comic Sans MS" FontSize="20"/>
+                            <TextBlock Text="{Binding Description}" FontFamily="Comic Sans MS" FontSize="15"/>
+                            <TextBlock Text="{Binding Cost, StringFormat='# рублей'}" FontFamily="Comic Sans MS" FontSize="15"/>
+                        </UniformGrid>
+
+                        <Button Grid.Column="2" Height="40" Width="40" VerticalAlignment="Bottom" Margin="1" Click="BtnBuy">
+                            <Image Source="/Resources/Select.png" Margin="2"/>
+                        </Button>
+                    </Grid>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <UniformGrid Grid.Row="2" Columns="3">
+            <Button Content="Добавить" Margin="1"/>
+            <Button Content="Удалить" Margin="1"/>
+            <Button Content="Редактировать" Margin="1"/>
+        </UniformGrid>
+    </Grid>
+</Page>
